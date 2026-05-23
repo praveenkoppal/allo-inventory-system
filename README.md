@@ -10,7 +10,7 @@ The application supports multi-warehouse inventory management, product reservati
 
 Deployed Application:
 
-https://YOUR-VERCEL-URL.vercel.app
+[https://YOUR-VERCEL-URL.vercel.app](https://allo-inventory-system-7me5p7buc.vercel.app/)
 
 ---
 
@@ -181,3 +181,73 @@ Automatically releases expired reservations.
 ```bash
 git clone https://github.com/praveenkoppal/allo-inventory-system.git
 cd allo-inventory-system
+
+2. Install Dependencies
+npm install
+3. Configure Environment Variables
+
+Create a .env file in the root directory:
+
+DATABASE_URL="postgresql://neondb_owner:npg_QRHUoqk0Y5xu@ep-plain-violet-apd6yyjy.c-7.us-east-1.aws.neon.tech/neondb?sslmode=require"
+4. Generate Prisma Client
+npx prisma generate
+5. Create Database Schema
+npx prisma db push
+6. Seed Database
+npm run seed
+7. Start Development Server
+npm run dev
+
+Application runs at:
+
+http://localhost:3000
+
+Trade-offs & Design Decisions
+
+Interactive Prisma transactions were initially explored for concurrency handling, but Neon pooled serverless connections introduced transaction startup timeout issues.
+
+To simplify the architecture while maintaining correctness under concurrency, the final implementation uses atomic conditional PostgreSQL updates instead of long-running interactive transactions or distributed Redis locks.
+
+This reduced operational complexity while still guaranteeing inventory consistency.
+
+Future Improvements
+
+With more time, the following improvements could be added:
+
+Redis-based distributed locking
+Idempotency key support
+WebSocket/SSE real-time updates
+Background job queue
+Authentication & authorization
+Admin inventory dashboard
+Reservation analytics
+Automated scheduled cleanup service
+Integration tests and stress testing
+Testing
+
+The application was tested for:
+
+Reservation creation
+Reservation confirmation
+Reservation cancellation
+Reservation expiry
+Automatic stock restoration
+Concurrent reservation requests
+Overselling prevention
+API error handling
+Live inventory updates
+Concurrency Test Example
+
+To verify overselling prevention:
+
+Set inventory stock to 1
+Send two simultaneous reservation requests
+Observe:
+one request succeeds
+one request receives HTTP 409
+
+This demonstrates race-condition-safe reservation handling.
+
+Author
+
+Praveen Koppal
