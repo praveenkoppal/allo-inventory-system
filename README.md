@@ -10,7 +10,7 @@ The application supports multi-warehouse inventory management, product reservati
 
 Deployed Application:
 
-[https://YOUR-VERCEL-URL.vercel.app](https://allo-inventory-system-7me5p7buc.vercel.app/)
+(https://allo-inventory-system-7me5p7buc.vercel.app/)
 
 ---
 
