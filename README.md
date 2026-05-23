@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
@@ -75,3 +76,38 @@ Notes / trade-offs:
 - Migrations: enum additions are applied via controlled SQL migration to avoid destroying the existing enum type.
 
 If you'd like, I can prepare a `deploy` checklist and add a Live demo URL.
+=======
+# Allo Inventory Reservation System
+
+A full-stack inventory reservation system built with Next.js, Prisma, PostgreSQL, and React Query.
+
+## Features
+
+- Multi-warehouse inventory management
+- Product reservation system
+- Reservation expiry handling
+- Concurrency-safe stock reservation
+- Reservation confirmation and cancellation
+- Live stock updates
+- Countdown timer for reservations
+
+## Tech Stack
+
+- Next.js App Router
+- TypeScript
+- Prisma ORM
+- PostgreSQL (Neon)
+- Tailwind CSS
+- shadcn/ui
+- React Query
+- Zod
+
+## Running Locally
+
+```bash
+npm install
+npx prisma generate
+npx prisma db push
+npm run seed
+npm run dev
+>>>>>>> 79c520953a6d8d67046a02320337eff5a527ade4
